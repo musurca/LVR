@@ -80,11 +80,8 @@ while { true } Do {
 	if ( ( !( alive _veh ) || { !( canMove _veh ) } ) && ( { ( alive _x ) } count ( crew _veh ) == 0 ) ) then {
 		_deadTime = _deadTime + 5;
 		
-		// IF THE VEHICLE IS DEAD THEN DELETE IT AND CREATE A NEW ONE AT THE STARTING POSITION
+		// IF THE VEHICLE IS DEAD THEN CREATE A NEW ONE AT THE STARTING POSITION (AND LEAVE THE WRECK)
 		if ( _deadTime > _destroyedDelay ) then {
-		
-			deleteVehicle _veh;
-			sleep 1;
 			_veh = createVehicle [ _vehtype, _vehPos, [], 0, "CAN_COLLIDE" ];
 			_veh setPos [ ( _vehPos select 0 ), (_vehPos select 1 ), 0 ];
 			_veh setDir _vehDir;
